@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.76.5" /><meta name="theme-color" content="#16171d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>Ubuntu 体验之旅</title>
+
+    <link rel="stylesheet" href="/css/meme.min.1a18e8c68a0f640f5f3eef6cf1a93783f9e928f2e51f120903d8599271f3207e.css"/>
+
+    
+    
+        <script src="/js/meme.min.50dee1c647900ef0dc47c9160b7d568dbd5edfa838e7557ef331cd4a7c2de9f8.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="trayvonpan" /><meta name="description" content="作为 Ubuntu 系统深度用户，一路走过来，仍然遇到了不少麻烦（踩了很多坑），无论是系统的安装，还是桌面的配置。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。
+" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="SeekInCS" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="SeekInCS" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://seekincs.com/posts/ubuntu-experience/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2019-05-01T20:53:00+08:00",
+        "dateModified": "2020-11-10T15:04:38+08:00",
+        "url": "https://seekincs.com/posts/ubuntu-experience/",
+        "headline": "Ubuntu 体验之旅",
+        "description": "作为 Ubuntu 系统深度用户，一路走过来，仍然遇到了不少麻烦（踩了很多坑），无论是系统的安装，还是桌面的配置。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。\n",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  1648 ,
+        "image": ["https://seekincs.com/ubuntu_download.png","https://seekincs.com/startup_disk_creator.png","https://seekincs.com/steps.png","https://seekincs.com/created_ubuntu.png","https://seekincs.com/gui_ubuntu_install.png","https://seekincs.com/ubuntu_installed.png"],
+        "author": {
+            "@type": "Person",
+            "url": "https://seekincs.com/",
+            
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "SeekInCS",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://seekincs.com/icons/apple-touch-icon.png"
+            },
+            "url": "https://seekincs.com/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://seekincs.com/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@seekincs" />
+
+    
+
+
+
+<meta property="og:title" content="Ubuntu 体验之旅" />
+<meta property="og:description" content="作为 Ubuntu 系统深度用户，一路走过来，仍然遇到了不少麻烦（踩了很多坑），无论是系统的安装，还是桌面的配置。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。
+" />
+<meta property="og:url" content="https://seekincs.com/posts/ubuntu-experience/" />
+<meta property="og:site_name" content="SeekInCS" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://seekincs.com/ubuntu_download.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2019-05-01T20:53:00&#43;08:00" />
+    <meta property="article:modified_time" content="2020-11-10T15:04:38&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">SeekInCS</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">Posts</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">About</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href=""></a>
+                </li>
+            
+        
+            
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">Ubuntu 体验之旅</h1>
+
+            
+
+            
+
+            
+
+            <div class="post-body e-content">
+              <p style="text-indent:0"><span class="drop-cap">作</span>为 Ubuntu 系统深度用户，一路走过来，仍然遇到了不少麻烦（<del>踩了很多坑</del>），无论是系统的安装，还是桌面的配置。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。</p>
+<p>要想使用 <code>Ubuntu</code> 桌面系统，一般有两种方式，一种是直接在物理机器上安装，另一种是借助虚拟机技术。这两种方式我都试过，具体使用那种还是看需要吧，如果是日常玩耍，可以装虚拟机；如果是做一些专业性的工作，感觉还是物理机流畅。</p>
+<h2 id="在物理机安装"><a href="#在物理机安装" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>在物理机安装</h2>
+<p>首先得下载系统镜像，可以选择自己想要的版本，截至目前，<code>Ubuntu</code> 官方已经推出了 <code>Ubuntu 20.04 LTS</code>，这又是一个长期支持的版本，不得不说，<code>Ubuntu</code> 桌面真的越来越完善了。访问<a class="link" href="https://ubuntu.com/download/desktop">这里</a>可以下载。</p>
+<p><img src="ubuntu_download.png" alt=""></p>
+<p>接下来，需要制作 <code>USB</code> 启动机，这个也很简单，如果你正在使用 <code>Ubuntu</code> 系统， 打开 <code>Startup Disk Creator</code>，你只需要提供下载的 <code>Ubuntu ISO</code> 文件，连接 <code>USB</code> 驱动器，这个工具就会为你创建可引导的 <code>Ubuntu USB</code> 驱动器。</p>
+<p><img src="startup_disk_creator.png" alt=""></p>
+<p>当然了，如果你使用的是 <code>Windows</code> 系统，可以使用<a href="https://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/" target="_blank" rel="noopener"><code>Universal USB Installer</code></a>。这是个小巧玲珑的工具，只需要配置简单的信息，你一样可以轻松地创建启动器。</p>
+<p><img src="steps.png" alt=""></p>
+<p>引导盘制作好之后，重启计算机，按下<code>F2</code>或者<code>F10</code>或者<code>ESC</code>等(不同的计算机会有差异)，引导计算机从<code>USB</code>启动，接下来按照引导程序的指示来做，这样，<code>Ubuntu</code> 就装在了你的物理机器上了。</p>
+<h2 id="安装虚拟机"><a href="#安装虚拟机" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>安装虚拟机</h2>
+<p>注：这里以 <code>Ubuntu 18.04 LTS</code> 为例。</p>
+<p>现在大多数计算机都非常强大，可以在自己的操作系统上运行另一个虚拟的操作系统，这意味着，如果你只有一台装着 <code>Windows</code> 操作系统的计算机，但凭借计算机的内存和处理能力，你依然可以在其中运行 <code>Chrome OS</code>、<code>Solaris</code>、<code>Ubuntu</code>、<code>macOS</code>等系统。</p>
+<p>现在市场上也有很多虚拟机软件，比较受欢迎的是 <code>VMware</code> 和 <code>VirtualBox</code>。这里以 <code>VMware</code> 为例，其他软件大同小异。</p>
+<p>如果不需要企业级的虚拟机支持，完全可以考虑只用免费版的 <code>VMware Player</code>，下载下来直接安装就行了。</p>
+<p>完成之后，我们开始创建虚拟机。</p>
+<p>打开 <code>VMware Player</code>，点击 <code>Create a New Virtual Machine</code>，进入创建新虚拟机向导，选择 <code>I will install the operating system later.</code>，点击 <code>Next</code>，在 <code>Guest Operating System</code>中选择 <code>Linux</code>，版本为 <code>Ubuntu 64 bit</code>，点击 <code>Next</code>，填写虚拟机名和存储位置，点击 <code>Next</code>，指定初始化磁盘空间大小，勾上 <code>Split virtual disk into multiple files</code>，点击 <code>Next</code>，点击 <code>Finish</code>。点击 <code>Edit virtual machine settings</code>，在 <code>CD/DVD(SATA)</code> 中选择 <code>Use ISO image</code>，并选择下载好的 <code>Ubuntu</code> 镜像的位置，保存。</p>
+<p>这样，虚拟机就创建好了。</p>
+<p><img src="created_ubuntu.png" alt=""></p>
+<p>开机试试看？</p>
+<p>点击 <code>Power On</code>，将启动虚拟机，进入系统安装页面。选择 <code>Install Ubuntu</code>，按部就班跟着向导就可以了。安装成功之后，重启虚拟机。</p>
+<p><img src="gui_ubuntu_install.png" alt=""></p>
+<p>开机之后，虚拟机并不能自适应宿主机屏幕的大小，需要调整。</p>
+<p>在 <code>VMware Player</code> 中选择 <code>Virtual Machine</code> 下拉菜单，选择 <code>Install VMware Tools</code>，这将会在虚拟机上安装一个驱动。</p>
+<div class="note-primary">
+ VMware Tools 是一套可以提高虚拟机客户机操作系统性能并改善虚拟机管理的实用工具。例如，在安装 VMware Tools 后，我们将可以：</br>
+ 1. 主机与客户机文件系统之间的共享文件夹</br>
+ 2. 在虚拟机与主机或客户端桌面之间复制并粘贴文本、图形和文件</br>
+ 3. 改进的鼠标性能</br>
+ 4. 虚拟机中的时钟与主机或客户端桌面上的时钟同步</br>
+ 5. 帮助自动执行客户机操作系统操作的脚本</br>
+</div>
+<p>安装成功之后，打开 <code>VMware Tools</code>，可以看到 <code>manifest.txt</code>，<code>run_upgrader.sh</code>，<code>VMwareTools-xxx.tar.g</code>z（这个<code>xxx</code>是具体的版本号），<code>vmware-tools-upgrader-32</code>，<code>vmware-tools-upgrader-64</code> 这几个文件，将 <code>VMwareTools-xxx.tar.gz</code> 这个压缩包拷贝到某个目录（比如<code>Documents</code>）并解压，打开终端，进入 <code>VMwareTools-xxx/vmware-tools-distrib</code>，运行 <code>vmware-install.pl</code> 这个文件。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo ./vmware-tools.pl
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这个脚本将会启动<code>VMware Tools</code>的安装，出现确认选项，一路选择默认即可。</p>
+<p>如果最后看到下面的提示信息，说明已经安装成功了。</p>
+<div class="note-info">
+Enjoy,
+<p>–the VMware team</p>
+</div>
+<p>重启虚拟机，发现已经可以全屏了。</p>
+<p><img src="ubuntu_installed.png" alt=""></p>
+<p>这样，我们就成功装上了<code>Ubuntu 18.04 LTS</code>，接着可以更新一下软件，做一些个性化的配置，我将在下一篇文章中分享我个人的方案。</p>
+<p><em>希望本文对你有帮助：）</em></p>
+            </div>
+
+            
+    
+    
+
+
+
+        </article>
+
+        
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Linux</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">2018–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;
+              
+              trayvonpan
+            </div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="mailto:seekincs@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/seekincs" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://twitter.com/seekincs" target="_blank" rel="external noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+                options: {
+                    renderActions: {
+                        addMenu: [0, '', '']
+                    }
+                },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    mediumZoom(document.querySelectorAll('div.post-body img'), {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>

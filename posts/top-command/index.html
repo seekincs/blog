@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.76.5" /><meta name="theme-color" content="#16171d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>使用 top 命令监视进程运行状态</title>
+
+    <link rel="stylesheet" href="/css/meme.min.1a18e8c68a0f640f5f3eef6cf1a93783f9e928f2e51f120903d8599271f3207e.css"/>
+
+    
+    
+        <script src="/js/meme.min.50dee1c647900ef0dc47c9160b7d568dbd5edfa838e7557ef331cd4a7c2de9f8.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="trayvonpan" /><meta name="description" content="在 Linux 中，top 是个很常用的命令，用来显示系统正在运行的进程，其输出的信息有时候对系统资源的监控很重要。一些重要的指标常常代表了不同的含义，理解这些指标才能更好地利用 top 提供的信息。
+" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="SeekInCS" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="SeekInCS" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://seekincs.com/posts/top-command/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2019-09-18T16:43:26+08:00",
+        "dateModified": "2020-11-10T15:20:12+08:00",
+        "url": "https://seekincs.com/posts/top-command/",
+        "headline": "使用 top 命令监视进程运行状态",
+        "description": "在 Linux 中，top 是个很常用的命令，用来显示系统正在运行的进程，其输出的信息有时候对系统资源的监控很重要。一些重要的指标常常代表了不同的含义，理解这些指标才能更好地利用 top 提供的信息。\n",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  789 ,
+        "image": ["https://seekincs.com/top.png"],
+        "author": {
+            "@type": "Person",
+            "url": "https://seekincs.com/",
+            
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "SeekInCS",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://seekincs.com/icons/apple-touch-icon.png"
+            },
+            "url": "https://seekincs.com/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://seekincs.com/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+<meta name="twitter:site" content="@seekincs" />
+
+    
+
+
+
+<meta property="og:title" content="使用 top 命令监视进程运行状态" />
+<meta property="og:description" content="在 Linux 中，top 是个很常用的命令，用来显示系统正在运行的进程，其输出的信息有时候对系统资源的监控很重要。一些重要的指标常常代表了不同的含义，理解这些指标才能更好地利用 top 提供的信息。
+" />
+<meta property="og:url" content="https://seekincs.com/posts/top-command/" />
+<meta property="og:site_name" content="SeekInCS" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://seekincs.com/top.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2019-09-18T16:43:26&#43;08:00" />
+    <meta property="article:modified_time" content="2020-11-10T15:20:12&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">SeekInCS</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">Posts</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">About</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href=""></a>
+                </li>
+            
+        
+            
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">使用 top 命令监视进程运行状态</h1>
+
+            
+
+            
+
+            
+
+            <div class="post-body e-content">
+              <p style="text-indent:0"><span class="drop-cap">在</span> Linux 中，top 是个很常用的命令，用来显示系统正在运行的进程，其输出的信息有时候对系统资源的监控很重要。一些重要的指标常常代表了不同的含义，理解这些指标才能更好地利用 top 提供的信息。</p>
+<p><img src="top.png" alt=""></p>
+<ul>
+<li>
+<p>系统运行时间和平均负载(load average)，例如：</p>
+ <div class="note-default">
+ top - 10:54:48 up 9 min,  1 user,  load average: 0.78, 0.57, 0.33
+ </div>
+<p>这行的字段分别显示了当前时间，系统已经运行的时间，当前登录的用户数和相应的 5、10、15 分钟的平均负载。</p>
+</li>
+<li>
+<p>任务或者进程总结，例如：</p>
+<div class="note-info">
+Tasks: 291 total, 1 running, 242 sleeping, 0 stopped, 0 zombie
+</div>
+<p>这行显示了当前总的任务(进程)数，以及正在运行、睡眠、停止和僵尸(zombie)的进程数。</p>
+</li>
+<li>
+<p>CPU 状态，即不同模式下所占的 CPU 百分比，例如：</p>
+<div class="note-primary">
+%Cpu(s): 10.3 us, 3.1 sy, 0.1 ni, 85.8 id, 0.2 wa, 0.0 hi, 0.6 si, 0.0 st
+ </div>
+<p>这行显示：</p>
+<ul>
+<li>us =&gt; user：运行(未调整优先级)用户进程的 CPU 时间</li>
+<li>sy =&gt; system，运行内核进程的 CPU 时间</li>
+<li>ni =&gt; niced，运行已调整优先级的用户进程的 CPU 时间</li>
+<li>wa =&gt; io wait，用于等待 IO 完成的 CPU 时间</li>
+<li>hi =&gt; hardware interrupt：处理硬件中断的时间</li>
+<li>si =&gt; software interrupt：处理软件中断的时间</li>
+</ul>
+</li>
+<li>
+<p>内存使用情况</p>
+<div class="note-default">
+KiB Mem : 8075192 total, 4250172 free, 1792168 used, 2032852 buff/cache
+KiB Swap: 2097148 total, 2097148 free, 0 used. 5424744 avail Mem
+</div>
+<p>第一行显示物理内存使用情况，第二行是虚拟内存使用情况。大致都可以分为全部可使用内存、空闲内存、已使用内存、缓冲内存。</p>
+</li>
+<li>
+<p>任务信息列，列出每个进程的一些信息。</p>
+<p>一般有以下属性：</p>
+<ul>
+<li>PID，进程 ID，进程的唯一标识符</li>
+<li>USER，进程所有者的实际用户名</li>
+<li>PR，进程调度的优先级别，rt 表示运行在实时态</li>
+<li>NI，进程的 nice 值(优先级)，越小的值代表越高的优先级</li>
+<li>VIRT，进程使用的虚拟内存</li>
+<li>RES，驻留内存大小</li>
+<li>SHR，进程使用的共享内存</li>
+<li>S，进程的状态，有以下值：
+<ul>
+<li>D，不可中断睡眠</li>
+<li>R，运行态</li>
+<li>S，睡眠态</li>
+<li>T，被跟踪或已经停止</li>
+<li>Z，僵尸态</li>
+</ul>
+</li>
+<li>%CPU，自上一次给你更新到现在任务所使用的 CPU 时间的百分比</li>
+<li>%MEM，进程使用的可用物理内存百分比</li>
+<li>TIME+，进程从启动到现在所使用的全部 CPU 时间</li>
+<li>COMMAND，进程所使用的命令</li>
+</ul>
+</li>
+</ul>
+            </div>
+
+            
+    
+    
+
+
+
+        </article>
+
+        
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/linux/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Linux</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">2018–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;
+              
+              trayvonpan
+            </div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="mailto:seekincs@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/seekincs" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://twitter.com/seekincs" target="_blank" rel="external noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+                options: {
+                    renderActions: {
+                        addMenu: [0, '', '']
+                    }
+                },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    mediumZoom(document.querySelectorAll('div.post-body img'), {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+
+
+
+    </body>
+</html>
