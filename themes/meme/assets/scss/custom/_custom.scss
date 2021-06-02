@@ -1,0 +1,80 @@
+.header {
+    text-transform: uppercase;
+    position: fixed;
+    will-change: transform;
+    transition: transform 0.5s ease-in-out;
+}
+
+.header-unpin {
+    transform: translateY(-65px);
+}
+
+.header-pin {
+    transform: translateY(0);
+}
+
+.footer {
+    color: black;
+}
+
+// code {
+//     color: red;
+// }
+
+div.note-default {
+    background-color: #f7f7f7;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #777;
+}
+
+div.note-info {
+    background-color: #eef7fa;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #428bca;
+}
+
+div.note-primary {
+    background-color: #f5f0fa;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #6f42c1;
+}
+
+blockquote {
+    background: #fcfcfc;
+    border-left: 0px;
+    color: black;
+    margin-top: 10px;
+    padding: 0.5em 10px;
+    font-style: italic;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 20px;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+ol {
+    background-color: #fafafa;
+    font-style: italic;
+    padding-right: 20px;
+}
+
+a.link {
+    color: darkgoldenrod;
+    padding-right: 5px;
+    padding-left: 5px;
+}
