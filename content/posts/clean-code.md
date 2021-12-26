@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "如何编写整洁的代码"
 date: 2020-11-25T13:40:48+08:00
 draft: false

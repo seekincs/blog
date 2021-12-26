@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "Ubuntu 体验之旅"
 date: 2019-05-01T20:53:00+08:00
 draft: false

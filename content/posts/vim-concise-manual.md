@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "Vim 简明手册"
 date: 2019-08-30T17:49:29+08:00
 draft: false

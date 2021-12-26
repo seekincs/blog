@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "C 语言回顾"
 date: 2018-10-17T21:00:15+08:00
 draft: false

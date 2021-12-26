@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "C++ 11/14/17/20 关键特性"
 date: 2020-10-23T20:56:54+08:00
 draft: false

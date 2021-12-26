@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "如何生成可靠的唯一ID"
 date: 2021-11-07T11:14:12+08:00
 draft: false

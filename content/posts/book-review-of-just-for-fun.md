@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "《Just for Fun》书评"
 date: 2018-08-02T15:31:57+08:00
 draft: false

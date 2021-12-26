@@ -1,5 +1,5 @@
 ---
-author: "trayvonpan"
+author: "Trayvon Pan"
 title: "Spring Cloud 微服务开发总结"
 date: 2020-01-19T16:47:00+08:00
 draft: false
