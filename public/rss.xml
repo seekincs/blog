@@ -19,7 +19,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 26 Dec 2021 12:32:33 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 26 Dec 2021 12:33:55 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://seekincs.com/rss.xml" />
         
@@ -117,37 +117,6 @@ MongoDB 的 ObjectId 、Twitter 的 Snowflake 算法的生成也是类似的思�
                                 
                                 
                                     <category domain="https://seekincs.com/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">系统设计</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>延迟队列设计</title>
-                <link>https://seekincs.com/posts/delay-queue/</link>
-                <guid isPermaLink="true">https://seekincs.com/posts/delay-queue/</guid>
-                <pubDate>Thu, 23 Sep 2021 11:14:12 &#43;0800</pubDate>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;p&gt;这是开头描述。&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://seekincs.com/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</category>
                                 
                             
                         

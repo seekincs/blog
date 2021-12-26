@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">SeekInCS</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2021-12-26T12:32:33&#43;08:00</updated>
+    <updated>2021-12-26T12:33:55&#43;08:00</updated>
     <id>https://seekincs.com/</id>
     <link rel="alternate" type="text/html" href="https://seekincs.com/" />
     <link rel="self" type="application/atom&#43;xml" href="https://seekincs.com/atom.xml" />
@@ -109,40 +109,6 @@ MongoDB 的 ObjectId 、Twitter 的 Snowflake 算法的生成也是类似的思�
                             
                             
                                 <category scheme="https://seekincs.com/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" term="系统设计" label="系统设计" />
-                            
-                        
-                    
-                
-            
-        </entry>
-    
-        <entry>
-            <title type="text">延迟队列设计</title>
-            <link rel="alternate" type="text/html" href="https://seekincs.com/posts/delay-queue/" />
-            <id>https://seekincs.com/posts/delay-queue/</id>
-            <updated>2021-12-26T09:28:39&#43;08:00</updated>
-            <published>2021-09-23T11:14:12&#43;08:00</published>
-            <author>
-                    <uri>https://seekincs.com/</uri>
-                    </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">这是开头描述。</summary>
-            
-                <content type="html">&lt;p&gt;这是开头描述。&lt;/p&gt;
-</content>
-            
-            
-            
-            
-            
-                
-                    
-                
-                    
-                        
-                            
-                            
-                            
-                                <category scheme="https://seekincs.com/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" term="中间件" label="中间件" />
                             
                         
                     
