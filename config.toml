@@ -1172,7 +1172,7 @@ uglyURLs = false
     displayFooterInHome = true
 
     # 是否显示版权符号（©）
-    # displayCopyrightSymbol = true
+    displayCopyrightSymbol = true
 
     # 是否显示站点的创建年份
     displaySiteCreatedYear = true
