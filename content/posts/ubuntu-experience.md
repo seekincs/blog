@@ -9,7 +9,7 @@ toc: false
 ---
 
 
-作为 Ubuntu 系统深度用户，一路走过来，仍然遇到了不少麻烦（~~踩了很多坑~~），无论是系统的安装，还是桌面的配置。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。
+作为 Ubuntu 系统深度用户，从开始接触到现在，无论是系统的安装，还是桌面的配置，都遇到了不少麻烦，踩了很多坑。所以，这里打算将 Ubuntu 的整个安装和配置过程做一个总结，以供参考。
 
 <!--more-->
 
@@ -17,7 +17,7 @@ toc: false
 
 ## 在物理机安装
 
-首先得下载系统镜像，可以选择自己想要的版本，截至目前，`Ubuntu` 官方已经推出了 `Ubuntu 20.04 LTS`，这又是一个长期支持的版本，不得不说，`Ubuntu` 桌面真的越来越完善了。访问<a class="link" href="https://ubuntu.com/download/desktop">这里</a>可以下载。
+首先得下载系统镜像，可以选择自己想要的版本。`Ubuntu` 官方已经推出了很多 `Ubuntu xx.04 LTS`，这些都是长期支持的版本。不得不说，`Ubuntu` 桌面性能和可配置性都越来越好了。访问<a class="link" href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop/</a> 可以下载。
 
 ![](ubuntu_download.png)
 
@@ -88,6 +88,6 @@ Enjoy,
 
 ![](ubuntu_installed.png)
 
-这样，我们就成功装上了`Ubuntu 18.04 LTS`，接着可以更新一下软件，做一些个性化的配置，我将在下一篇文章中分享我个人的方案。
+这样，我们就成功装上了`Ubuntu 18.04 LTS`，接着可以更新一下软件，做一些个性化的配置。
 
-*希望本文对你有帮助：）*
+<!-- *希望本文对你有帮助：）* -->

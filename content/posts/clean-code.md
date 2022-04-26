@@ -1,10 +1,10 @@
 ---
 author: "Trayvon Pan"
-title: "如何编写整洁的代码"
+title: "代码整洁之道"
 date: 2020-11-25T13:40:48+08:00
 draft: false
 description: ""
-tags: ["Code Design"]
+tags: ["读书"]
 toc: false
 ---
 

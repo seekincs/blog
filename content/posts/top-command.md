@@ -1,6 +1,6 @@
 ---
 author: "Trayvon Pan"
-title: "使用 top 命令监视进程运行状态"
+title: "如何监控系统的进程？"
 date: 2019-09-18T16:43:26+08:00
 draft: false
 description: ""
