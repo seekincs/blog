@@ -1,6 +1,6 @@
 ---
 author: "Trayvon Pan"
-title: "最简单的IPC：管道"
+title: "最原始的IPC：管道"
 date: 2022-07-06T20:03:47+08:00
 draft: false
 description: ""

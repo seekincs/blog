@@ -19,15 +19,15 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 06 Jul 2022 22:32:15 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 06 Jul 2022 22:35:58 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://seekincs.com/rss.xml" />
         
         
             <item>
-                <title>最简单的IPC：管道</title>
-                <link>https://seekincs.com/posts/simplest-ipc-pipe/</link>
-                <guid isPermaLink="true">https://seekincs.com/posts/simplest-ipc-pipe/</guid>
+                <title>最原始的IPC：管道</title>
+                <link>https://seekincs.com/posts/most-primitive-ipc-pipe/</link>
+                <guid isPermaLink="true">https://seekincs.com/posts/most-primitive-ipc-pipe/</guid>
                 <pubDate>Wed, 06 Jul 2022 20:03:47 &#43;0800</pubDate>
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
