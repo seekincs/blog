@@ -12,7 +12,7 @@
     
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <title>最原始的IPC：管道</title>
+    <title>最快的IPC：共享内存</title>
 
     <link rel="stylesheet" href="/css/meme.min.1a18e8c68a0f640f5f3eef6cf1a93783f9e928f2e51f120903d8599271f3207e.css"/>
 
@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
 
-    <meta name="author" content="Trayvon Pan" /><meta name="description" content="IPC 是进程间通信（InterProcess Communication）的简称，指的是操作系统上的不同进程之间的某种形式的消息传递。管道（Pipe）是早期被广泛使用的一种最简单的 IPC 形式，不过它只能在有亲缘关系的进程之间使用。为了解决这个问题，后来引入了有名管道（Named Pipe），也称为 FIFO。
+    <meta name="author" content="Trayvon Pan" /><meta name="description" content="为什么共享内存是最快的 IPC 形式？简单来说，是因为共享内存区可以映射到进程的地址空间，那么这些进程之间的数据传递就不再涉及内核，避免了相对耗时的模态切换和系统调用。不过，使用共享内存的进程之间读写数据时，也需要某种形式的同步机制。
 " />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -47,22 +47,22 @@
     
 
     
-    <link rel="canonical" href="https://seekincs.com/posts/most-primitive-ipc-pipe/" />
+    <link rel="canonical" href="https://seekincs.com/posts/fastest-ipc-shm/" />
     
 
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "datePublished": "2022-07-06T20:03:47+08:00",
-        "dateModified": "2022-07-12T09:49:08+08:00",
-        "url": "https://seekincs.com/posts/most-primitive-ipc-pipe/",
-        "headline": "最原始的IPC：管道",
-        "description": "IPC 是进程间通信（InterProcess Communication）的简称，指的是操作系统上的不同进程之间的某种形式的消息传递。管道（Pipe）是早期被广泛使用的一种最简单的 IPC 形式，不过它只能在有亲缘关系的进程之间使用。为了解决这个问题，后来引入了有名管道（Named Pipe），也称为 FIFO。\n",
+        "datePublished": "2022-07-12T10:35:29+08:00",
+        "dateModified": "2022-07-12T16:01:36+08:00",
+        "url": "https://seekincs.com/posts/fastest-ipc-shm/",
+        "headline": "最快的IPC：共享内存",
+        "description": "为什么共享内存是最快的 IPC 形式？简单来说，是因为共享内存区可以映射到进程的地址空间，那么这些进程之间的数据传递就不再涉及内核，避免了相对耗时的模态切换和系统调用。不过，使用共享内存的进程之间读写数据时，也需要某种形式的同步机制。\n",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
-        "wordCount":  1103 ,
-        "image": ["https://seekincs.com/parent-child-pipe.png","https://seekincs.com/linux-command-pipe.png","https://seekincs.com/fifo.png"],
+        "wordCount":  1485 ,
+        "image": ["https://seekincs.com/pipe-fifo-mq.png","https://seekincs.com/mmap.png"],
         "author": {
             "@type": "Person",
             "url": "https://seekincs.com/",
@@ -96,15 +96,15 @@
 
 
 
-<meta property="og:title" content="最原始的IPC：管道" />
-<meta property="og:description" content="IPC 是进程间通信（InterProcess Communication）的简称，指的是操作系统上的不同进程之间的某种形式的消息传递。管道（Pipe）是早期被广泛使用的一种最简单的 IPC 形式，不过它只能在有亲缘关系的进程之间使用。为了解决这个问题，后来引入了有名管道（Named Pipe），也称为 FIFO。
+<meta property="og:title" content="最快的IPC：共享内存" />
+<meta property="og:description" content="为什么共享内存是最快的 IPC 形式？简单来说，是因为共享内存区可以映射到进程的地址空间，那么这些进程之间的数据传递就不再涉及内核，避免了相对耗时的模态切换和系统调用。不过，使用共享内存的进程之间读写数据时，也需要某种形式的同步机制。
 " />
-<meta property="og:url" content="https://seekincs.com/posts/most-primitive-ipc-pipe/" />
+<meta property="og:url" content="https://seekincs.com/posts/fastest-ipc-shm/" />
 <meta property="og:site_name" content="SeekInCS" />
-<meta property="og:locale" content="zh" /><meta property="og:image" content="https://seekincs.com/parent-child-pipe.png" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://seekincs.com/pipe-fifo-mq.png" />
 <meta property="og:type" content="article" />
-    <meta property="article:published_time" content="2022-07-06T20:03:47&#43;08:00" />
-    <meta property="article:modified_time" content="2022-07-12T09:49:08&#43;08:00" />
+    <meta property="article:published_time" content="2022-07-12T10:35:29&#43;08:00" />
+    <meta property="article:modified_time" content="2022-07-12T16:01:36&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -181,7 +181,7 @@
 
         <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
 
-            <h1 class="post-title p-name">最原始的IPC：管道</h1>
+            <h1 class="post-title p-name">最快的IPC：共享内存</h1>
 
             
 
@@ -190,45 +190,47 @@
             
 
             <div class="post-body e-content">
-              <p style="text-indent:0"><span class="drop-cap">I</span>PC 是<strong>进程间通信</strong>（InterProcess Communication）的简称，指的是操作系统上的不同进程之间的某种形式的<strong>消息传递</strong>。管道（Pipe）是早期被广泛使用的一种最简单的 IPC 形式，不过它只能在有亲缘关系的进程之间使用。为了解决这个问题，后来引入了有名管道（Named Pipe），也称为 FIFO。</p>
-<h2 id="管道"><a href="#管道" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>管道</h2>
-<p>几乎所有的类 Unix 系统都提供了管道，可以通过 pipe 函数来创建。pipe 函数返回两个文件描述符，fd[0]和 fd[1]。可以通过 fd[0]来读管道中的数据，fd[1]来向管道里面写数据。</p>
-<div class="highlight"><div class="chroma">
-<div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">pipe</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// 创建成功返回0，否则返回-1
-</span></span></span></code></pre></td></tr></table></div>
-</div>
-</div><p>在只有单个进程的情况下，数据从 fd[1]流向管道，再从管道流向 fd[0]。如果一个父进程通过 fork 产生一个子进程，那这个子进程可以拿到父进程管道的一个副本。这时候，数据有 4 个流向（A、B、C、D）。在 fork 之后，父进程关闭自己的 fd[0]，子进程关闭自己的 fd[1]，只留下 A 和 D 两个流向，这就建立了<strong>从父进程到子进程的单向数据流</strong>。不过，由于管道只提供的单向的数据流，所以如果要在两个进程之间进行双向通信（全双工通信），至少需要创建两个管道。</p>
-<p><img src="parent-child-pipe.png" alt="parent-child-pipe"></p>
-<p>Linux 系统不少地方都用到了管道的设计思想。比如在终端输入<code>cat data.txt | grep &quot;2022&quot; | sort</code> 对文件的数据筛选、排序，这些命令由三个进程（cat 进程、grep 进程、sort 进程）来完成，cat 进程处理完之后，把输出写入管道 A，grep 进程从管道 A 中读出数据，处理之后写入管道 B，sort 进程读出管道 B 的数据处理之后，通过标准输出打印出来。</p>
-<p><img src="linux-command-pipe.png" alt="linux-command-pipe"></p>
-<h2 id="fifo"><a href="#fifo" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>FIFO</h2>
-<p>管道是没有名字的，在不考虑文件描述符传递的情况下，只能在具有亲缘关系的进程之间使用，这是管道最大的局限性。FIFO 是一种改进版本的管道，每个 FIFO 都有一个路径名与之关联，所以只要不同的进程能够访问同一个 FIFO，就能实现彼此之间的通信。FIFO 同样只提供单向数据流，要实现双向通信，至少需要两个 FIFO。FIFO 可以通过 mkfifo 函数创建，其中 pathname 是一个 Unix 路径名，同时也是 FIFO 的名字。</p>
+              <p style="text-indent:0"><span class="drop-cap">为</span>什么共享内存是最快的 IPC 形式？<b>简单来说，是因为共享内存区可以映射到进程的地址空间，那么这些进程之间的数据传递就不再涉及内核，避免了相对耗时的模态切换和系统调用。</b>不过，使用共享内存的进程之间读写数据时，也需要某种形式的同步机制。</p>
+<h2 id="管道fifo-和消息队列为什么慢"><a href="#管道fifo-和消息队列为什么慢" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>管道、FIFO 和消息队列为什么慢</h2>
+<p>假设进程 P1 需要向进程 P2 发送一个文件。通常情况下，需要经过几个步骤：</p>
+<p>1、P1 通过 read 将输入文件<strong>拷贝</strong>到自己的进程空间；</br>
+2、P1 通过 write 或 mq_send 把数据<strong>拷贝</strong>到内核的管道、FIFO 或消息队列；</br>
+3、内核负责把 管道、FIFO 或消息队列的数据<strong>拷贝</strong>到 P2 的进程空间；</br>
+4、进程 P2 通过 write 把数据<strong>拷贝</strong>到输出文件。</p>
+<p><img src="pipe-fifo-mq.png" alt="pipe-fifo-mq"></p>
+<p>可见，整个过程一共需要 4 次数据拷贝，并且注意到，每次拷贝都是在内核和用户进程之间进行的，因此需要 4 次用户态和内核态之间的切换，这个模态切换的开销是相当大的。而且，这仅仅是 P1 向 P2 传送数据的开销，如果 P1 和 P2 需要频繁互相交换数据，那么这个开销将会更大。<strong>本质上，管道、FIFO 和消息队列这三种 IPC 形式的问题在于，不同进程之间的数据交换都需要经过内核。</strong></p>
+<p>那能不能绕开内核呢？答案是肯定的，共享内存提供了一种可行的解决方案。不同的进程可以访问一块预先分配的共享内存，内核会把这块内存的地址空间映射到每个进程自己的地址空间，进程只访问自己的地址空间，内核会维护这些进程空间和共享内存空间的数据一致性。由于这些进程会竞争性地读写数据，所以必须协调和同步进程对共享内存的使用，比如互斥锁、读写锁、信号量等等。</p>
+<h2 id="地址空间的映射"><a href="#地址空间的映射" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>地址空间的映射</h2>
+<p>这通常可以由 mmap（https://man7.org/linux/man-pages/man2/mmap.2.html）来完成。
+<strong>mmap 函数把一个文件映射到调用该函数的进程的地址空间。</strong> mmap 函数的原型为：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">mkfifo</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pathname</span><span class="p">,</span> <span class="n">mode_t</span> <span class="n">mode</span><span class="p">);</span> <span class="c1">// 创建成功返回0，否则返回-1
-</span></span></span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 若成功则为被映射区的起始地址，出错返回 MAP_FAILED
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="o">*</span><span class="nf">mmap</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">prot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="n">off_t</span> <span class="n">offset</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
-</div><p>FIFO 可以重复使用，如果希望打开一个已经创建好的 FIFO，直接调用 open 函数即可。一般来说，在往 FIFO 里面读写数据之前，要通过 mkfifo 检查是否存在，再通过 open 或者 fopen 打开。管道和 FIFO 在内核类似一个队列，write 操作总是会写到它们的末尾，read 操作总是读它们开头的数据，不能对管道或者 FIFO 调用 lseek。</p>
-<p><img src="fifo.png" alt="fifo"></p>
-<h2 id="局限性"><a href="#局限性" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>局限性</h2>
-<ul>
-<li>管道和 FIFO 都是只能在单台主机上使用的 IPC 形式。</li>
-<li>一个进程在任意时刻能打开的最大文件描述符有限，并且操作系统还限制了可以原子性往一个管道或者 FIFO 写入的最大数据量。</li>
-<li>管道和 FIFO 这种 IPC 面向字节流，数据没有语义的区分，需要应用程序把这些字节流分割为对象。</li>
-</ul>
+</div><p>其中 addr 指定 fd 应该映射到进程空间的起始地址。通常情况下可以指定为空指针，让内核自己去决定起始地址。flags 用来选择可见性。如果 flags=MAP_SHARED，表明一个进程对映射数据的更改是共享的，其他进程可以同步到这个更改；如果 flags=MAP_PRIVATE，那么进程对映射数据的改动只对本进程可见。</p>
+<p><img src="mmap.png" alt="mmap"></p>
+<p>对于 flags=MAP_SHARED 这种情况而言，实际的数据保存在一个文件里面，各个进程把文件的数据映射到自己的空间进行读写。这就可能产生一个问题：怎么保证映射的数据和文件是一致的？（在分布式系统也有类似的问题，比如各个服务都单独拷贝了一份数据库的数据在本地的缓存，但需要保持缓存和数据库的一致性。）这是由内核来完成的。内核通过虚拟内存算法保证文件与映射内存的同步。如果一个进程修改了映射内存的数据，那么就会在稍后某个时刻相应地更改文件（可以参考内存和磁盘的同步机制）。当然，内核什么时候写回磁盘，我们是不知道的。有时候，我们希望确定磁盘上的文件和映射内存的内容一致，可以通过调用 msync（https://man7.org/linux/man-pages/man2/msync.2.html）来完成。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/mman.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">msync</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>Posix.1 提供了两种在无亲缘关系进程间共享内存的方法：内存映射文件和内存映射对象。前者由 open 函数打开文件得到一个 fd；后者由 shm_open （https://man7.org/linux/man-pages/man3/shm_open.3.html）打开一个 Posix.1 IPC 名字（可以是文件路径，也可以是其他），然后 mmap 将其映射到进程空间。共享内存的大小可以通过 ftruncate（https://man7.org/linux/man-pages/man3/ftruncate.3p.html）来调整。</p>
             </div>
 
             

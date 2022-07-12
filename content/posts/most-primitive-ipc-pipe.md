@@ -4,7 +4,7 @@ title: "最原始的IPC：管道"
 date: 2022-07-06T20:03:47+08:00
 draft: false
 description: ""
-tags: ["计算机网络"]
+tags: ["IPC"]
 toc: false
 ---
 
